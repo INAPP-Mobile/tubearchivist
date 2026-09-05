@@ -1,0 +1,68 @@
+{
+  "PORT": {
+    "name": "PORT",
+    "description": "HTTP port (nginx reverse-proxies to backend on 8080).",
+    "isOptional": true,
+    "defaultValue": "8000"
+  },
+  "TA_HOST": {
+    "name": "TA_HOST",
+    "description": "Public URL of this service — auto-derived from Railway domain.",
+    "isOptional": true,
+    "defaultValue": "https://${{tubearchivist.RAILWAY_PUBLIC_DOMAIN}}"
+  },
+  "TA_USERNAME": {
+    "name": "TA_USERNAME",
+    "description": "Initial admin username. Change after first login.",
+    "isOptional": true,
+    "defaultValue": "tubearchivist"
+  },
+  "TA_PASSWORD": {
+    "name": "TA_PASSWORD",
+    "description": "Initial admin password — auto-generated. Save after deploy.",
+    "isOptional": false,
+    "defaultValue": "${{secret(16)}}"
+  },
+  "ELASTIC_PASSWORD": {
+    "name": "ELASTIC_PASSWORD",
+    "description": "Elasticsearch password — auto-generated. Must match ES service password.",
+    "isOptional": false,
+    "defaultValue": "${{secret(16)}}"
+  },
+  "ES_URL": {
+    "name": "ES_URL",
+    "description": "Elasticsearch connection URL — auto-derived from ES companion.",
+    "isOptional": true,
+    "defaultValue": "http://${{tubearchivist-es.RAILWAY_PRIVATE_DOMAIN}}:9200"
+  },
+  "REDIS_CON": {
+    "name": "REDIS_CON",
+    "description": "Redis connection URL — auto-derived from Redis companion.",
+    "isOptional": true,
+    "defaultValue": "redis://${{tubearchivist-redis.RAILWAY_PRIVATE_DOMAIN}}:6379"
+  },
+  "HOST_UID": {
+    "name": "HOST_UID",
+    "description": "User ID for volume file ownership.",
+    "isOptional": true,
+    "defaultValue": "1000"
+  },
+  "HOST_GID": {
+    "name": "HOST_GID",
+    "description": "Group ID for volume file ownership.",
+    "isOptional": true,
+    "defaultValue": "1000"
+  },
+  "TZ": {
+    "name": "TZ",
+    "description": "Container timezone (IANA name).",
+    "isOptional": true,
+    "defaultValue": "UTC"
+  },
+  "TA_AUTO_UPDATE_YTDLP": {
+    "name": "TA_AUTO_UPDATE_YTDLP",
+    "description": "Auto-update yt-dlp (release|nightly|disabled).",
+    "isOptional": true,
+    "defaultValue": "release"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "tubearchivist": {
+    "RAILWAY_PRIVATE_DOMAIN": "tubearchivist.RAILWAY_PRIVATE_DOMAIN",
+    "RAILWAY_PUBLIC_DOMAIN": "tubearchivist.RAILWAY_PUBLIC_DOMAIN",
+    "ELASTIC_PASSWORD": "ELASTIC_PASSWORD"
+  },
+  "tubearchivist-es": {
+    "RAILWAY_PRIVATE_DOMAIN": "tubearchivist-es.RAILWAY_PRIVATE_DOMAIN",
+    "RAILWAY_PUBLIC_DOMAIN": "tubearchivist-es.RAILWAY_PUBLIC_DOMAIN"
+  },
+  "tubearchivist-redis": {
+    "RAILWAY_PRIVATE_DOMAIN": "tubearchivist-redis.RAILWAY_PRIVATE_DOMAIN",
+    "RAILWAY_PUBLIC_DOMAIN": "tubearchivist-redis.RAILWAY_PUBLIC_DOMAIN"
+  }
+}

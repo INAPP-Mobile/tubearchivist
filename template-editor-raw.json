@@ -1,0 +1,59 @@
+{
+  "tubearchivist": {
+    "PORT": {
+      "value": "8000",
+      "description": "HTTP port (nginx reverse-proxies to backend on 8080)."
+    },
+    "TA_HOST": {
+      "value": "https://${{tubearchivist.RAILWAY_PUBLIC_DOMAIN}}",
+      "description": "Public URL of this service — auto-derived from Railway domain."
+    },
+    "TA_USERNAME": {
+      "value": "tubearchivist",
+      "description": "Initial admin username. Change after first login."
+    },
+    "TA_PASSWORD": {
+      "value": "${{secret(16)}}",
+      "description": "Initial admin password — auto-generated. Save after deploy."
+    },
+    "ELASTIC_PASSWORD": {
+      "value": "${{secret(16)}}",
+      "description": "Elasticsearch password — auto-generated. Must match ES service password."
+    },
+    "ES_URL": {
+      "value": "http://${{tubearchivist-es.RAILWAY_PRIVATE_DOMAIN}}:9200",
+      "description": "Elasticsearch connection URL — auto-derived from ES companion."
+    },
+    "REDIS_CON": {
+      "value": "redis://${{tubearchivist-redis.RAILWAY_PRIVATE_DOMAIN}}:6379",
+      "description": "Redis connection URL — auto-derived from Redis companion."
+    },
+    "HOST_UID": {
+      "value": "1000",
+      "description": "User ID for volume file ownership."
+    },
+    "HOST_GID": {
+      "value": "1000",
+      "description": "Group ID for volume file ownership."
+    },
+    "TZ": {
+      "value": "UTC",
+      "description": "Container timezone (IANA name)."
+    },
+    "TA_AUTO_UPDATE_YTDLP": {
+      "value": "release",
+      "description": "Auto-update yt-dlp (release|nightly|disabled)."
+    }
+  },
+  "tubearchivist-es": {
+    "ELASTIC_PASSWORD": {
+      "value": "${{tubearchivist.ELASTIC_PASSWORD}}",
+      "description": "Elasticsearch password — shared from main service."
+    },
+    "ES_JAVA_OPTS": {
+      "value": "-Xms512m -Xmx512m",
+      "description": "Java heap limits for Elasticsearch."
+    }
+  },
+  "tubearchivist-redis": {}
+}
