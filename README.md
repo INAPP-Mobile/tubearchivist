@@ -1,4 +1,4 @@
-# TubeArchivist
+# Deploy and Host TubeArchivist on Railway
 
 [![Deploy on Railway](https://railway.app/button.svg)](https://railway.com/deploy/rFmtfs)
 
@@ -7,7 +7,18 @@ YouTube collection. TubeArchivist downloads videos with metadata, subtitles,
 and comments, then indexes everything in Elasticsearch for fast full-text
 search, all behind a clean responsive web UI.
 
-## Why Deploy
+## About Hosting TubeArchivist
+
+This Railway template deploys the full TubeArchivist stack: the Django +
+Celery + nginx main app, Elasticsearch 8.19 for search and metadata indexing,
+Redis 7.4 for the task queue, and a POT-token provider companion that keeps
+yt-dlp downloads working from datacenter IPs where YouTube's bot checks would
+otherwise stall them. All services talk over Railway private networking, and
+media persists on the main service's 50GB volume. First start takes a few
+minutes while Elasticsearch initializes its index; after that, log in with
+the generated credentials and add channels or video URLs to start archiving.
+
+## Why Deploy TubeArchivist on Railway?
 
 - **Own your archive** — videos land on your own persistent volume, immune to
   channel deletions, region blocks, or YouTube account loss.
@@ -26,7 +37,10 @@ search, all behind a clean responsive web UI.
 - Research and content-preservation projects requiring searchable archives
 - Automated channel monitoring with scheduled rescans and downloads
 
-## Configuration
+## Dependencies for TubeArchivist Hosting
+
+You can configure the deployment using the following environment variables
+(all internal wiring is pre-configured by the template):
 
 | Variable | Description | Default |
 |---|---|---|
@@ -53,19 +67,23 @@ This template deploys **four services**:
 4. **tubearchivist-pot** — POT-token provider (`bgutil-ytdlp-pot-provider`)
    that keeps yt-dlp downloads working from datacenter IPs
 
+- Upstream project: [tubearchivist/tubearchivist](https://github.com/tubearchivist/tubearchivist)
+- POT provider: [brainicism/bgutil-ytdlp-pot-provider](https://github.com/brainicism/bgutil-ytdlp-pot-provider)
+
 Credentials (`TA_PASSWORD`, `ELASTIC_PASSWORD`) are auto-generated per deploy
 and shared between the main app and Elasticsearch via template references —
 no manual wiring needed.
 
-## About Hosting
+### Implementation Details
 
-All services run as Docker containers on Railway with private networking
-(`*.railway.internal` DNS) between them — only the main app is exposed
-publicly. Media persists on the main service's 50GB volume at `/cache/youtube`.
-First start takes a few minutes while Elasticsearch initializes its index.
-Log in with the generated `TA_USERNAME`/`TA_PASSWORD`, then add YouTube
-channels or video URLs to start archiving. For heavy archiving, monitor disk
-usage in the Railway dashboard and increase the volume size as needed.
+In Railway, after deploying the template:
+
+- Log in with the generated `TA_USERNAME`/`TA_PASSWORD`
+- Import a YouTube cookie in Settings → Applications if downloads hit bot
+  detection even with the POT provider active (datacenter IPs sometimes
+  require both)
+- For heavy archiving, monitor disk usage in the Railway dashboard and
+  increase the volume size as needed
 
 ## Features
 
