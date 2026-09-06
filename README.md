@@ -1,6 +1,6 @@
 # TubeArchivist
 
-[![Deploy on Railway](https://railway.app/button.svg)](https://railway.com/deploy/tubearchivist)
+[![Deploy on Railway](https://railway.app/button.svg)](https://railway.com/deploy/rFmtfs)
 
 Self-hosted YouTube media archive server — save, organize, and search your
 YouTube collection. TubeArchivist downloads videos with metadata, subtitles,
