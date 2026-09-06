@@ -11,5 +11,9 @@
   "tubearchivist-redis": {
     "RAILWAY_PRIVATE_DOMAIN": "tubearchivist-redis.RAILWAY_PRIVATE_DOMAIN",
     "RAILWAY_PUBLIC_DOMAIN": "tubearchivist-redis.RAILWAY_PUBLIC_DOMAIN"
+  },
+  "tubearchivist-pot": {
+    "RAILWAY_PRIVATE_DOMAIN": "tubearchivist-pot.RAILWAY_PRIVATE_DOMAIN",
+    "RAILWAY_PUBLIC_DOMAIN": "tubearchivist-pot.RAILWAY_PUBLIC_DOMAIN"
   }
 }
