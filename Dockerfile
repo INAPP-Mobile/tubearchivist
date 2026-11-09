@@ -1,4 +1,4 @@
-FROM bbilly1/tubearchivist:v0.5.12
+FROM bbilly1/tubearchivist:v0.6.0
 
 USER root
 
